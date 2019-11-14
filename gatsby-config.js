@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Afrotech Events`,
+    description: `Events, receptions, parties, and expo related offerings hosted by companies and groups during Afrotech. Also includes travel grants and scholarships, volunteer opportunities and ways to connect with other attendees. All events open to the public with the exception of those hosted by AfroTech itself.`,
+    author: `@ezeikel`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
