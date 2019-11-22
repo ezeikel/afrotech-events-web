@@ -5,7 +5,7 @@ import SEO from "../components/seo";
 import styled from "styled-components";
 import GlobalStyle from "../GlobalStyle";
 
-const Container = styled.div`
+const Wrapper = styled.div`
   background-color: tomato;
   h1 {
     color: white;
@@ -16,9 +16,9 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <GlobalStyle />
-    <Container>
+    <Wrapper>
       <h1>Hello World.</h1>
-    </Container>
+    </Wrapper>
   </Layout>
 );
 

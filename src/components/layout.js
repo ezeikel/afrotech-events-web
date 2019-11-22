@@ -6,11 +6,18 @@
  */
 
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
 import Footer from "./footer";
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 80px 1fr 375px;
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,13 +31,13 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <Wrapper>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div>
         <main>{children}</main>
       </div>
       <Footer />
-    </>
+    </Wrapper>
   );
 }
 
