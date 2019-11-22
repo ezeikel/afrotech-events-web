@@ -59,7 +59,7 @@ const Footer = () => (
     </ProjectDetails>
     <Copyright>
       <WithLove>Made with <span>♡</span> in <span>South London</span></WithLove>
-      <span>&copy; 2019. All rights reserved.</span>
+      <span>&copy; {new Date().getFullYear()}. All rights reserved.</span>
     </Copyright>
   </Wrapper>
 );
