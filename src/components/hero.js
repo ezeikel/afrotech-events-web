@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.footer`
-  height: 500px;
+const Wrapper = styled.div`
+  height: 100vh;
   background-image:
     linear-gradient(
       to right,
