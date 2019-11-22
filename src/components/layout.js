@@ -12,11 +12,16 @@ import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
 import Footer from "./footer";
+import Hero from "./hero";
 
 const Wrapper = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 80px 1fr 375px;
+  grid-template-rows: 105px 1fr 375px;
+`;
+
+const StyledHeader = styled(Header)`
+  grid-row: 1 / span 1;
 `;
 
 const Layout = ({ children }) => {
@@ -32,7 +37,8 @@ const Layout = ({ children }) => {
 
   return (
     <Wrapper>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <StyledHeader siteTitle={data.site.siteMetadata.title} />
+      <Hero />
       <div>
         <main>{children}</main>
       </div>

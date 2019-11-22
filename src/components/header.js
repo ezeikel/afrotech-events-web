@@ -2,8 +2,7 @@ import React from "react";
 
 const Header = () => (
   <header>
-    <div>
-    </div>
+    <h1>Afrotech Events</h1>
   </header>
 );
 
