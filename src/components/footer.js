@@ -9,6 +9,10 @@ const Wrapper = styled.footer`
   text-align: center;
   display: flex;
   flex-direction: column;
+  @media (min-width: 768px) {
+    padding: 48px;
+    text-align: left;
+  }
 `;
 
 const ProjectDetails = styled.section`
@@ -18,6 +22,9 @@ const ProjectDetails = styled.section`
   line-height: 24px;
   a {
     color: #9B9B9B;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 64px;
   }
 `;
 
@@ -33,10 +40,33 @@ const CreatedBy = styled.span`
   }
 `;
 
+const InspiredBy = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    span + span {
+      margin-left: 8px;
+    }
+  }
+`;
+
 const Copyright = styled.section`
   display: flex;
   flex-direction: column;
   line-height: 21px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    span {
+      &:first-of-type {
+        order: 2;
+      }
+      &:nth-of-type(2) {
+        order: 1;
+      }
+    }
+  }
 `;
 
 const WithLove = styled.span`
@@ -54,8 +84,10 @@ const Footer = () => (
   <Wrapper>
     <ProjectDetails>
       <CreatedBy>Created by <span><a href="https://twitter.com/ezeikel_">Ezeikel</a></span>.</CreatedBy>
-      <span>Inspired by:</span>
-      <span><a href="https://github.com/helloayo/AfroTech-Events">https://github.com/helloayo/AfroTech-Events</a></span>
+      <InspiredBy>
+        <span>Inspired by:</span>
+        <span><a href="https://github.com/helloayo/AfroTech-Events">https://github.com/helloayo/AfroTech-Events</a></span>
+      </InspiredBy>
     </ProjectDetails>
     <Copyright>
       <WithLove>Made with <span>♡</span> in <span>South London</span></WithLove>
