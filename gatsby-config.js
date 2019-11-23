@@ -38,6 +38,10 @@ module.exports = {
           {
             family: `Heebo`,
             variants: [`400`, `500`, `700`, `800`, `900`]
+          },
+          {
+            family: `Open Sans`,
+            variants: [`400`]
           }
         ],
       },

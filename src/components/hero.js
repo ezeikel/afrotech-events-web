@@ -33,7 +33,6 @@ const HeroTitle = styled.div`
   grid-column: 1 / -1;
   margin: 0;
   font-size: 72px;
-  font-weight: 800;
   color: var(--color-white);
   display: flex;
   flex-direction: column;
@@ -43,10 +42,14 @@ const HeroTitle = styled.div`
     &:first-of-type {
       font-size: 48px;
       font-weight: 800;
+      margin-bottom: 8px;
     }
     &:nth-of-type(2) {
+      font-family: 'Open Sans';
       font-size: 32px;
-      font-weight: 900;
+      background-color: #FF5E5B;
+      padding: 8px 16px;
+      border-radius: 4px;
     }
   }
   @media (min-width: 768px) {
@@ -79,19 +82,18 @@ const StyledLink = styled(Link)`
   grid-row: 4 / span 1;
   grid-column: 1 / -1;
   align-self: end;
-  border: 3px solid var(--color-tertiary);
+  border: 3px solid var(--color-white);
   border-radius: 4px;
-  color: var(--color-white);
-  background-color: var(--color-tertiary);
+  color: #FF5E5B;
+  background-color: var(--color-white);
   font-size: 2.2rem;
   font-weight: bold;
   padding: var(--spacing-medium) var(--spacing-large);
-  color: var(--color-white);
   @media (min-width: 768px) {
     transition: all 0.3s ease-in-out;
     &:hover {
-      background-color: #6043ed;
-      border-color: #6043ed;
+      /* background-color: #6043ed;
+      border-color: #6043ed; */
       cursor: pointer;
     }
   }
@@ -107,8 +109,8 @@ const Hero = () => (
     </StyledVideo>
     <Overlay>
       <HeroTitle>
-        <span>NOVEMBER 12th - 15th</span>
         <span>OAKLAND, CA</span>
+        <span>NOVEMBER 12th - 15th</span>
       </HeroTitle>
       <StyledLink to="/who-we-are">Find Events</StyledLink>
       <StyledScrollDown />
