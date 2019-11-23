@@ -121,23 +121,30 @@ export default createGlobalStyle`
   } */
   `;
 
-  export const spinKeyframe = keyframes`
-    0% {
-      transform: rotate(0);
-    }
-    50% {
-      transform: rotate(45deg);
-    }
-    100% {
-      transform: rotate(0);
-    }
-  `;
+export const spinKeyframe = keyframes`
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+`;
 
-  export const rotateKeyFrame = keyframes`
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+export const rotateKeyFrame = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const scrollDown = keyframes`
+  40%, 60% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
 `;

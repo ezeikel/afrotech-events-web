@@ -37,12 +37,8 @@ module.exports = {
         fonts: [
           {
             family: `Heebo`,
-            subsets: [`latin`],
-          },
-          {
-            family: `Open Sans`,
-            variants: [`400`, `700`, `800`]
-          },
+            variants: [`400`, `500`, `700`, `800`, `900`]
+          }
         ],
       },
     }
