@@ -3,7 +3,8 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { isMobileOnly, isIOS } from "react-device-detect";
 import ScrollDown from "./scrollDown";
-import video from "../videos/afrotech-recap-day-1.mp4"
+import video from "../videos/afrotech-recap-day-1.mp4";
+import gif from "../images/afrotech-recap-day-1.gif";
 
 const Wrapper = styled.div`
   position: relative;
@@ -80,6 +81,11 @@ const StyledVideo = styled.video`
   object-fit: cover;
 `;
 
+const StyledGif = styled.img`
+  height: 100%;
+  object-fit: cover;
+`;
+
 const StyledLink = styled(Link)`
   grid-row: 4 / span 1;
   grid-column: 1 / -1;
@@ -105,6 +111,9 @@ const Hero = () => {
   const [lowPowerMode, setLowPowerMode] = useState(false);
 
   const handleVideoSuspend = () => {
+    // TODO: suspend event seems to fire no matter what. Think it just fires once media has loaded
+    // Using a gif of the video as a workaround on iPhone
+
     // only hide video on iPhone low power mode
     if (isMobileOnly && isIOS) {
       setLowPowerMode(true);
@@ -117,12 +126,16 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <StyledVideo autoPlay muted loop playsInline lowPowerMode={lowPowerMode} onSuspend={handleVideoSuspend} onPlay={handleVideoPlay} >
-        <source
-          src={video}
-          type="video/mp4"
-        />
-      </StyledVideo>
+      {
+        lowPowerMode ?
+        <StyledGif src={gif} /> :
+        <StyledVideo autoPlay muted loop playsInline lowPowerMode={lowPowerMode} onSuspend={handleVideoSuspend} onPlay={handleVideoPlay} >
+          <source
+            src={video}
+            type="video/mp4"
+          />
+        </StyledVideo>
+      }
       <Overlay>
         <HeroTitle>
           <span>OAKLAND, CA</span>
