@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Link } from "gatsby";
+import styled from "styled-components";
+import { isMobileOnly, isIOS } from "react-device-detect";
 import ScrollDown from "./scrollDown";
 import video from "../videos/afrotech-recap-day-1.mp4"
 
@@ -72,7 +73,7 @@ const StyledScrollDown = styled(ScrollDown)`
 `;
 
 const StyledVideo = styled.video`
-  /* handle low power mode on iOS */
+  /* handle low power mode on iPhone */
   visibility: ${({ lowPowerMode }) => lowPowerMode ? "hidden" : "visible"};
   width: 100%;
   height: 100%;
@@ -104,7 +105,10 @@ const Hero = () => {
   const [lowPowerMode, setLowPowerMode] = useState(false);
 
   const handleVideoSuspend = () => {
-    setLowPowerMode(true);
+    // only hide video on iPhone low power mode
+    if (isMobileOnly && isIOS) {
+      setLowPowerMode(true);
+    }
   }
 
   const handleVideoPlay = () => {
