@@ -5,6 +5,7 @@ import SEO from "../components/seo";
 import styled from "styled-components";
 import GlobalStyle from "../GlobalStyle";
 import Hero from "../components/hero";
+import Events from "../components/events";
 
 const Wrapper = styled.div`
   display: grid;
@@ -81,6 +82,7 @@ const IndexPage = () => (
           <p><span>Disclaimer:</span> We do not work for Afrotech so can’t answer any questions you may have regarding the conference itself but please use this site to check for all things Afrotech events.</p>
         </Disclaimer>
       </Section>
+      <Events />
     </Wrapper>
   </Layout>
 );

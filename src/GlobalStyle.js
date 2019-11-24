@@ -41,6 +41,8 @@ export default createGlobalStyle`
     --font-size-medium: 1.8rem;
     --font-size-large: 2rem;
     --font-size-huge: 2.2rem;
+
+    --box-shadow: 0 3px 6px rgba(0,0,0, 0.16);
   }
   * {
     box-sizing: border-box;
@@ -104,6 +106,10 @@ export default createGlobalStyle`
     transition: all 0.3s ease-in-out;
     width: 100%;
     font-weight: 300; */
+  }
+  button {
+    border: none;
+    cursor: pointer;
   }
   /* button[type="submit"] {
     display: block;

@@ -42,16 +42,23 @@ const HeroTitle = styled.div`
   text-align: center;
   span {
     &:first-of-type {
-      font-size: 48px;
+      font-size: 42px;
       font-weight: 800;
       margin-bottom: 8px;
     }
     &:nth-of-type(2) {
       font-family: 'Open Sans';
-      font-size: 32px;
+      font-size: 22px;
       background-color: #FF5E5B;
       padding: 8px 16px;
       border-radius: 4px;
+    }
+  }
+  @media (min-width: 375px) {
+    span {
+      &:nth-of-type(2) {
+        font-size: 28px;
+      }
     }
   }
   @media (min-width: 768px) {
@@ -90,13 +97,13 @@ const StyledLink = styled(Link)`
   grid-row: 4 / span 1;
   grid-column: 1 / -1;
   align-self: end;
-  border: 3px solid var(--color-white);
   border-radius: 4px;
   color: #FF5E5B;
   background-color: var(--color-white);
   font-size: 2.2rem;
   font-weight: bold;
   padding: var(--spacing-medium) var(--spacing-large);
+  box-shadow: var(--box-shadow);
   @media (min-width: 768px) {
     transition: all 0.3s ease-in-out;
     &:hover {
@@ -141,7 +148,7 @@ const Hero = () => {
           <span>OAKLAND, CA</span>
           <span>NOVEMBER 12th - 15th</span>
         </HeroTitle>
-        <StyledLink to="/who-we-are">Find Events</StyledLink>
+        <StyledLink to="/">Find Events</StyledLink>
         <StyledScrollDown />
       </Overlay>
     </Wrapper>
