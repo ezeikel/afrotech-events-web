@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
 import ScrollDown from "./scrollDown";
@@ -72,7 +72,8 @@ const StyledScrollDown = styled(ScrollDown)`
 `;
 
 const StyledVideo = styled.video`
-  display: block;
+  /* handle low power mode on iOS */
+  visibility: ${({ lowPowerMode }) => lowPowerMode ? "hidden" : "visible"};
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -99,30 +100,35 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Hero = () => (
-  <Wrapper>
-    <StyledVideo autoPlay muted loop playsInline>
-      <source
-        src={video}
-        type="video/mp4"
-      />
-    </StyledVideo>
-    <Overlay>
-      <HeroTitle>
-        <span>OAKLAND, CA</span>
-        <span>NOVEMBER 12th - 15th</span>
-      </HeroTitle>
-      <StyledLink to="/who-we-are">Find Events</StyledLink>
-      <StyledScrollDown />
-    </Overlay>
-    <video>
+const Hero = () => {
+  const [lowPowerMode, setLowPowerMode] = useState(false);
 
-    </video>
-    {/* <span>Novembe</span>
-    <span>12th - 15th</span>
-    <span>Oakland, CA</span> */}
+  const handleVideoSuspend = () => {
+    setLowPowerMode(true);
+  }
 
-  </Wrapper>
-);
+  const handleVideoPlay = () => {
+    setLowPowerMode(false);
+  }
+
+  return (
+    <Wrapper>
+      <StyledVideo autoPlay muted loop playsInline lowPowerMode={lowPowerMode} onSuspend={handleVideoSuspend} onPlay={handleVideoPlay} >
+        <source
+          src={video}
+          type="video/mp4"
+        />
+      </StyledVideo>
+      <Overlay>
+        <HeroTitle>
+          <span>OAKLAND, CA</span>
+          <span>NOVEMBER 12th - 15th</span>
+        </HeroTitle>
+        <StyledLink to="/who-we-are">Find Events</StyledLink>
+        <StyledScrollDown />
+      </Overlay>
+    </Wrapper>
+  );
+};
 
 export default Hero;
