@@ -1,11 +1,11 @@
 import React from "react";
-import Layout from "../components/Layout";
-import SEO from "../components/SEO";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 import styled from "styled-components";
 import GlobalStyle from "../GlobalStyle";
-import Hero from "../components/Hero";
-import SearchEvent from "../components/SearchEvent";
-import SubmitEvent from "../components/SubmitEvent";
+import Hero from "../components/hero";
+import SearchEvent from "../components/searchEvent";
+import SubmitEvent from "../components/submitEvent";
 
 const Wrapper = styled.div`
   display: grid;
