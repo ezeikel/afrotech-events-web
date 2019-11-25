@@ -80,7 +80,7 @@ const EventForm = () => (
     initialValues={{ eventName: '', host: '', date: '', time: '', location: '', rsvpLink: '', notes: '' }}
     validationSchema={EventSchema}
     onSubmit={(values, actions) => {
-      console.log(actions);
+      console.log({ values, actions });
     }}
   >
     {({
