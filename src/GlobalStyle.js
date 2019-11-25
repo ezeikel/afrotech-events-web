@@ -43,6 +43,8 @@ export default createGlobalStyle`
     --font-size-huge: 2.2rem;
 
     --box-shadow: 0 3px 6px rgba(0,0,0, 0.16);
+
+    --border-radius: 4px;
   }
   * {
     box-sizing: border-box;
@@ -99,13 +101,11 @@ export default createGlobalStyle`
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: 0;
-    /* border: 0;
     border-radius: 0;
-    padding: 1em;
-    border: 1px solid #ecf0f1;
-    transition: all 0.3s ease-in-out;
+    padding: 16px;
+    border: 1px solid #ECF0F1;
     width: 100%;
-    font-weight: 300; */
+    font-weight: 300;
   }
   button {
     border: none;
@@ -121,10 +121,10 @@ export default createGlobalStyle`
     transition: background-color 0.3s ease-in-out;
     text-transform: uppercase;
   } */
-  /* button[type="submit"][disabled] {
+  button[type="submit"][disabled] {
     opacity: 0.7;
     text-decoration: line-through;
-  } */
+  }
   `;
 
 export const spinKeyframe = keyframes`

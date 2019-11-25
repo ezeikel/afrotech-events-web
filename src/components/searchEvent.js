@@ -15,7 +15,6 @@ const Wrapper = styled.section`
 
 const Title = styled.h2`
   font-size: 48px;
-  line-height: 24px;
   font-weight: bold;
   margin: 0 0 64px 0;
   color: var(--color-white);
@@ -73,7 +72,7 @@ const Searchbox = styled.input`
   }
 `;
 
-const Header = () => (
+const SearchEvent = () => (
   <Wrapper>
     <Title>Events</Title>
     <StyledButton>Submit Event</StyledButton>
@@ -81,4 +80,4 @@ const Header = () => (
   </Wrapper>
 );
 
-export default Header;
+export default SearchEvent;
