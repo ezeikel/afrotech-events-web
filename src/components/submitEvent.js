@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import EventForm from "./eventForm";
+import EventForm from "./EventForm";
 
 const Wrapper = styled.section`
   display: flex;
@@ -28,12 +28,19 @@ const Copy = styled.p`
   font-size: 18px;
   line-height: 24px;
   text-align: center;
+  margin: 0 0 32px 0;
+  a {
+    color: #FF5E5B;
+  }
+  @media (min-width: 768px) {
+    text-align: left;
+  }
 `;
 
 const SubmitEvent = () => (
   <Wrapper>
     <Title>Submit Event</Title>
-    <Copy>You can submit an event using the form below or by making a pull request to the GitHub repo for this site. Just follow the instructions on how to contribute.</Copy>
+    <Copy>You can submit an event using the form below or by making a pull request to the <a href="">GitHub repo</a> for this site. Just follow the instructions on how to contribute.</Copy>
     <EventForm />
   </Wrapper>
 );

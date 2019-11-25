@@ -96,7 +96,7 @@ export default createGlobalStyle`
     font-size: var(--default);
     color: var(--color-black);
   }
-  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], input[type="textarea"], textarea, select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -107,6 +107,11 @@ export default createGlobalStyle`
     width: 100%;
     font-weight: 300;
   }
+
+  textarea, input[type="textarea"] {
+    height: 160px;
+  }
+
   button {
     border: none;
     cursor: pointer;

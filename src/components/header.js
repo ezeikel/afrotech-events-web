@@ -23,7 +23,7 @@ const Logo = styled.span`
   line-height: 42px;
   font-weight: 800;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--color-white);
   width: 100%;
   @media (min-width: 768px) {
     text-align: left;

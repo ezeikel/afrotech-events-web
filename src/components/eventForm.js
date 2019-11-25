@@ -9,12 +9,36 @@ const FormWrapper = styled(Form)`
   padding: 32px;
   box-shadow: var(--box-shadow);
   width: 100%;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 0 32px 0;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  &:nth-last-of-type(2) {
+    margin-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    flex: 0 1 50%;
+    &:nth-of-type(odd) {
+      padding-right: 16px;
+    }
+    &:nth-of-type(even) {
+      padding-left: 16px;
+    }
+
+    &:last-of-type, &:nth-last-of-type(2) {
+      flex: 1 1 100%;
+      padding: 0;
+    }
+  }
 `;
 
 
@@ -36,6 +60,9 @@ const StyledButton = styled.button`
   font-size: 20px;
   font-weight: bold;
   padding: 16px;
+  @media (min-width: 768px) {
+    flex: 0 0 100%;
+  }
 `;
 
 const EventSchema = yup.object().shape({
@@ -92,8 +119,8 @@ const EventForm = () => (
           <ErrorMessage name="rsvpLink">{msg => <div className="error">{msg}</div>}</ErrorMessage>
         </FieldWrapper>
         <FieldWrapper>
-          <Label htmlFor="notes">Notes</Label>
-          <StyledField type="text" name="notes" />
+          <Label htmlFor="notes">Notes (optional)</Label>
+          <StyledField type="textarea" name="notes" />
           <ErrorMessage name="notes">{msg => <div className="error">{msg}</div>}</ErrorMessage>
         </FieldWrapper>
         <FieldWrapper>

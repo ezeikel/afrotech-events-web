@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { isMobileOnly, isIOS } from "react-device-detect";
-import ScrollDown from "./scrollDown";
+import ScrollDown from "./ScrollDown";
 import video from "../videos/afrotech-recap-day-1.mp4";
 import gif from "../images/afrotech-recap-day-1.gif";
 
