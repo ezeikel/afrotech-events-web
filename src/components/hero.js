@@ -135,7 +135,7 @@ const Hero = () => {
     <Wrapper>
       {
         lowPowerMode ?
-        <StyledGif src={gif} /> :
+        <StyledGif src={gif} alt="Day one of Afrotech Conference" /> :
         <StyledVideo autoPlay muted loop playsInline lowPowerMode={lowPowerMode} onSuspend={handleVideoSuspend} onPlay={handleVideoPlay} >
           <source
             src={video}
