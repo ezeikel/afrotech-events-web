@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components";
 import { isMobileOnly, isIOS } from "react-device-detect";
 import ScrollDown from "./scrollDown";
-import video from "../videos/afrotech-recap-day-1.mp4";
-import gif from "../images/afrotech-recap-day-1.gif";
 
 const Wrapper = styled.div`
   position: relative;
@@ -115,6 +113,28 @@ const StyledLink = styled(Link)`
 `;
 
 const Hero = () => {
+  const data = useStaticQuery(graphql`
+    query HeroQuery {
+      contentfulHero(year: { eq: 2020 }) {
+        subtitle
+        title
+        backgroundMedia {
+          file {
+            url
+          }
+        }
+        ctaText
+        fallbackBackgroundMedia {
+          file {
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  console.log({ data })
+
   const [lowPowerMode, setLowPowerMode] = useState(false);
 
   const handleVideoSuspend = () => {
@@ -133,26 +153,39 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      {
-        lowPowerMode ?
-        <StyledGif src={gif} alt="Day one of Afrotech Conference" /> :
-        <StyledVideo autoPlay muted loop playsInline lowPowerMode={lowPowerMode} onSuspend={handleVideoSuspend} onPlay={handleVideoPlay} >
+      {lowPowerMode ? (
+        <StyledGif
+          src={
+            data.contentfulHero.fallbackBackgroundMedia.file.url
+          }
+          alt="Day one of Afrotech Conference"
+        />
+      ) : (
+        <StyledVideo
+          autoPlay
+          muted
+          loop
+          playsInline
+          lowPowerMode={lowPowerMode}
+          onSuspend={handleVideoSuspend}
+          onPlay={handleVideoPlay}
+        >
           <source
-            src={video}
+            src={data.contentfulHero.backgroundMedia.file.url}
             type="video/mp4"
           />
         </StyledVideo>
-      }
+      )}
       <Overlay>
         <HeroTitle>
-          <span>OAKLAND, CA</span>
-          <span>NOVEMBER 12th - 15th</span>
+          <span>{data.contentfulHero.title}</span>
+          <span>{data.contentfulHero.subtitle}</span>
         </HeroTitle>
-        <StyledLink to="/">Find Events</StyledLink>
+        <StyledLink to="/">{data.contentfulHero.ctaText}</StyledLink>
         <StyledScrollDown />
       </Overlay>
     </Wrapper>
-  );
+  )
 };
 
 export default Hero;

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "afrotech-events-web",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    }
+  ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "CONTENTFUL_ACCESS_TOKEN": "afrotech_events_contentful_access_token"
+    }
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "CONTENTFUL_ACCESS_TOKEN": "afrotech_events_contentful_access_token"
+  }
+}
