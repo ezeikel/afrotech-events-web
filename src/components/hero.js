@@ -133,8 +133,6 @@ const Hero = () => {
     }
   `);
 
-  console.log({ data })
-
   const [lowPowerMode, setLowPowerMode] = useState(false);
 
   const handleVideoSuspend = () => {

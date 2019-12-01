@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Events from "./events";
 
 const Wrapper = styled.section`
   display: flex;
@@ -51,6 +52,7 @@ const Searchbox = styled.input`
   border: none;
   box-shadow: var(--box-shadow);
   width: 100%;
+  margin-bottom: 32px;
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #BBBBBB;
     line-height: inherit;
@@ -68,7 +70,10 @@ const Searchbox = styled.input`
     line-height: inherit;
   }
   @media (min-width: 768px) {
-    width: 75%;
+    margin-bottom: 48px;
+    &[type="text"] {
+      width: 75%;
+    }
   }
 `;
 
@@ -77,6 +82,7 @@ const SearchEvent = () => (
     <Title>Events</Title>
     <StyledButton>Submit Event</StyledButton>
     <Searchbox type="text" placeholder="Search" />
+    <Events />
   </Wrapper>
 );
 

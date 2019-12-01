@@ -58,5 +58,16 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "AFROTECH_EVENTS",
+        // This is the field under which it's accessible
+        fieldName: "afrotechEvents",
+        // URL to query from
+        url: process.env.NODE_ENV === 'production' ? "https://api.afrotech.events/graphql" : "http://localhost:7777/graphql",
+      },
+    },
   ],
 }

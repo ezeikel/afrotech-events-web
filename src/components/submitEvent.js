@@ -40,7 +40,7 @@ const Copy = styled.p`
 const SubmitEvent = () => (
   <Wrapper>
     <Title>Submit Event</Title>
-    <Copy>You can submit an event using the form below or by making a pull request to the <a href="https://github.com/ezeikel/afrotech-events-web">GitHub repo</a> for this site. Just follow the instructions on how to contribute.</Copy>
+    <Copy>You can submit an event using the form below or by making a pull request to the <a href="https://github.com/ezeikel/afrotech-events-web" target="_blank" rel="noopener noreferrer">GitHub repo</a> for this site. Just follow the instructions on how to contribute.</Copy>
     <EventForm />
   </Wrapper>
 );

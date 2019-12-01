@@ -25,8 +25,32 @@ const FieldWrapper = styled.div`
   &:nth-last-of-type(2) {
     margin-bottom: 64px;
   }
+  ${({ multiple }) => {
+    return multiple ? `
+      span {
+        &:first-of-type {
+          margin-bottom: 32px
+        }
+      }
+      ` : '';
+    }};
   @media (min-width: 768px) {
     flex: 0 1 50%;
+    ${({ multiple }) => {
+    return multiple ? `
+      display: flex;
+      flex-direction: row;
+      span {
+        flex: 0 0 50%;
+        &:first-of-type {
+          padding-right: var(--spacing-small);
+        }
+        &:last-of-type {
+          padding-left: var(--spacing-small);
+        }
+      }
+      ` : '';
+    }};
     &:nth-of-type(odd) {
       padding-right: 16px;
     }
@@ -41,8 +65,8 @@ const FieldWrapper = styled.div`
   }
 `;
 
-
 const Label = styled.label`
+  display: flex;
   color: var(--color-black);
   text-transform: capitalize;
   font-size: 18px;
@@ -60,6 +84,7 @@ const StyledButton = styled.button`
   font-size: 20px;
   font-weight: bold;
   padding: 16px;
+  box-shadow: var(--box-shadow);
   @media (min-width: 768px) {
     flex: 0 0 100%;
   }
@@ -103,10 +128,17 @@ const EventForm = () => (
           <StyledField type="text" name="date" />
           <ErrorMessage name="date">{msg => <div className="error">{msg}</div>}</ErrorMessage>
         </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="time">Time</Label>
-          <StyledField type="text" name="time" />
-          <ErrorMessage name="time">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+        <FieldWrapper multiple={true}>
+          <span>
+            <Label htmlFor="time">Start Time</Label>
+            <StyledField type="text" name="startTime" />
+            <ErrorMessage name="startTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </span>
+          <span>
+            <Label htmlFor="time">End Time</Label>
+            <StyledField type="text" name="EndTime" />
+            <ErrorMessage name="EndTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </span>
         </FieldWrapper>
         <FieldWrapper>
           <Label htmlFor="location">Location</Label>
