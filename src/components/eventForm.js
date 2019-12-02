@@ -2,6 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import gql from "graphql-tag";
+import { useMutation } from '@apollo/react-hooks';
+
+const CREATE_EVENT = gql`
+mutation createEvent(
+  $name: String!,
+  $host: String!,
+  $date: Date!,
+  $address: String!,
+  $rsvpLink: String,
+  $notes: String,
+  ) {
+    createEvent(
+      name: $name
+      host: $host
+      date: $date
+      address: $address
+      rsvpLink: $rsvpLink
+      notes: $notes
+    ) {
+      id,
+      name,
+      host
+    }
+  }
+`;
 
 const FormWrapper = styled(Form)`
   display: flex;
@@ -100,67 +126,85 @@ const EventSchema = yup.object().shape({
   notes: yup.string().required('Last Name is required.')
 });
 
-const EventForm = () => (
-  <Formik
-    initialValues={{ eventName: '', host: '', date: '', time: '', location: '', rsvpLink: '', notes: '' }}
-    validationSchema={EventSchema}
-    onSubmit={(values, actions) => {
-      console.log({ values, actions });
-    }}
-  >
-    {({
-      isValid,
-      isSubmitting
-    }) => (
-      <FormWrapper>
-        <FieldWrapper>
-          <Label htmlFor="eventName">Event Name</Label>
-          <StyledField type="text" name="eventName" />
-          <ErrorMessage name="eventName">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="host">Host</Label>
-          <StyledField type="text" name="host" />
-          <ErrorMessage name="host">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="date">Date</Label>
-          <StyledField type="text" name="date" />
-          <ErrorMessage name="date">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper multiple={true}>
-          <span>
-            <Label htmlFor="time">Start Time</Label>
-            <StyledField type="text" name="startTime" />
-            <ErrorMessage name="startTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-          </span>
-          <span>
-            <Label htmlFor="time">End Time</Label>
-            <StyledField type="text" name="EndTime" />
-            <ErrorMessage name="EndTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-          </span>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="location">Location</Label>
-          <StyledField type="text" name="location" />
-          <ErrorMessage name="location">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="rvspLink">RSVP Link</Label>
-          <StyledField type="text" name="rsvpLink" />
-          <ErrorMessage name="rsvpLink">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Label htmlFor="notes">Notes (optional)</Label>
-          <StyledField type="textarea" name="notes" />
-          <ErrorMessage name="notes">{msg => <div className="error">{msg}</div>}</ErrorMessage>
-        </FieldWrapper>
-        <FieldWrapper>
-          <StyledButton type="submit" disabled={isSubmitting || !isValid }>Submit{isSubmitting ? 'ing' : null}</StyledButton>
-        </FieldWrapper>
-      </FormWrapper>
-    )}
-  </Formik>
-);
+const EventForm = () => {
+  const [createEvent, { data }] = useMutation(CREATE_EVENT);
+
+  return (
+    <Formik
+      initialValues={{ eventName: '', host: '', date: '', time: '', location: '', rsvpLink: '', notes: '' }}
+      validationSchema={EventSchema}
+      onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
+
+        console.log({ values, actions });
+        try {
+          await createEvent({
+            variables: values
+          });
+          resetForm();
+        } catch(e) {
+          setErrors(e);
+        }
+
+        setSubmitting(false);
+      }}
+    >
+      {({
+        isValid,
+        touched,
+        isSubmitting,
+        errors
+      }) => (
+        <FormWrapper>
+          {isValid}
+          <FieldWrapper>
+            <Label htmlFor="eventName">Event Name</Label>
+            <StyledField type="text" name="eventName" />
+            <ErrorMessage name="eventName">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="host">Host</Label>
+            <StyledField type="text" name="host" />
+            <ErrorMessage name="host">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="date">Date</Label>
+            <StyledField type="text" name="date" />
+            <ErrorMessage name="date">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper multiple={true}>
+            <span>
+              <Label htmlFor="time">Start Time</Label>
+              <StyledField type="text" name="startTime" />
+              <ErrorMessage name="startTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+            </span>
+            <span>
+              <Label htmlFor="time">End Time</Label>
+              <StyledField type="text" name="EndTime" />
+              <ErrorMessage name="EndTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+            </span>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="location">Location</Label>
+            <StyledField type="text" name="location" />
+            <ErrorMessage name="location">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="rvspLink">RSVP Link</Label>
+            <StyledField type="text" name="rsvpLink" />
+            <ErrorMessage name="rsvpLink">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="notes">Notes (optional)</Label>
+            <StyledField type="textarea" name="notes" />
+            <ErrorMessage name="notes">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+          </FieldWrapper>
+          <FieldWrapper>
+            <StyledButton type="submit" disabled={isSubmitting }>Submit{isSubmitting ? 'ing' : null}</StyledButton>
+          </FieldWrapper>
+        </FormWrapper>
+      )}
+    </Formik>
+  );
+};
 
 export default EventForm;

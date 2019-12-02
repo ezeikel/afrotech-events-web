@@ -34,6 +34,7 @@ const Events = () => {
           host
           address
           date
+          duration
           rsvpLink
           notes
         }
@@ -41,12 +42,11 @@ const Events = () => {
     }
   `);
 
-  console.log({ data });
   const { events } = data.afrotechEvents;
 
   return (
     <React.Fragment>
-      <Total>Showing <span>{events.length}</span> events</Total>
+      <Total>Showing <span>{events.length}</span> event{events.length > 1 ? "s" : null}</Total>
       { events ?
         <Wrapper>
           {

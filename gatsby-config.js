@@ -67,6 +67,8 @@ module.exports = {
         fieldName: "afrotechEvents",
         // URL to query from
         url: process.env.NODE_ENV === 'production' ? "https://api.afrotech.events/graphql" : "http://localhost:7777/graphql",
+        // refetch interval in seconds
+        //refetchInterval: 60,
       },
     },
   ],
