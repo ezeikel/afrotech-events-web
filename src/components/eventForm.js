@@ -9,7 +9,8 @@ const CREATE_EVENT = gql`
 mutation createEvent(
   $name: String!,
   $host: String!,
-  $date: Date!,
+  $startTime: Date!,
+  $endTime: Date!,
   $address: String!,
   $rsvpLink: String,
   $notes: String,
@@ -17,7 +18,8 @@ mutation createEvent(
     createEvent(
       name: $name
       host: $host
-      date: $date
+      startTime: $startTime
+      endTime: $endTime
       address: $address
       rsvpLink: $rsvpLink
       notes: $notes
@@ -117,11 +119,11 @@ const StyledButton = styled.button`
 `;
 
 const EventSchema = yup.object().shape({
-  eventName: yup.string().required('First Name is required.'),
+  name: yup.string().required('First Name is required.'),
   host: yup.string().required('Last Name is required.'),
   date: yup.string().required('Last Name is required.'),
   time: yup.string().required('Last Name is required.'),
-  location: yup.string().required('Last Name is required.'),
+  address: yup.string().required('Last Name is required.'),
   rsvpLink: yup.string().required('Last Name is required.'),
   notes: yup.string().required('Last Name is required.')
 });
@@ -131,15 +133,27 @@ const EventForm = () => {
 
   return (
     <Formik
-      initialValues={{ eventName: '', host: '', date: '', time: '', location: '', rsvpLink: '', notes: '' }}
+      initialValues={{ name: '', host: '', date: '', startTime: '', endTime: '', address: '', rsvpLink: '', notes: '' }}
       validationSchema={EventSchema}
       onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
 
-        console.log({ values, actions });
+        // TODO: hardcoding temporarily
+        const start = new Date("November 15, 2020 17:00:00");
+        const end = new Date("November 15, 2020 21:30:00");
+        const eventDate = new Date("November 15, 2020");
+
+        // TODO: combine date and time into one date and send it as startTime.
+        // this will be stored as date in the Event model
+
+        values.startTime = start;
+        values.endTime = end;
+
         try {
           await createEvent({
             variables: values
           });
+
+          console.log({ data });
           resetForm();
         } catch(e) {
           setErrors(e);
@@ -157,9 +171,9 @@ const EventForm = () => {
         <FormWrapper>
           {isValid}
           <FieldWrapper>
-            <Label htmlFor="eventName">Event Name</Label>
-            <StyledField type="text" name="eventName" />
-            <ErrorMessage name="eventName">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+            <Label htmlFor="name">Event Name</Label>
+            <StyledField type="text" name="name" />
+            <ErrorMessage name="name">{msg => <div className="error">{msg}</div>}</ErrorMessage>
           </FieldWrapper>
           <FieldWrapper>
             <Label htmlFor="host">Host</Label>
@@ -179,14 +193,14 @@ const EventForm = () => {
             </span>
             <span>
               <Label htmlFor="time">End Time</Label>
-              <StyledField type="text" name="EndTime" />
+              <StyledField type="text" name="endTime" />
               <ErrorMessage name="EndTime">{msg => <div className="error">{msg}</div>}</ErrorMessage>
             </span>
           </FieldWrapper>
           <FieldWrapper>
-            <Label htmlFor="location">Location</Label>
-            <StyledField type="text" name="location" />
-            <ErrorMessage name="location">{msg => <div className="error">{msg}</div>}</ErrorMessage>
+            <Label htmlFor="address">address</Label>
+            <StyledField type="text" name="address" />
+            <ErrorMessage name="address">{msg => <div className="error">{msg}</div>}</ErrorMessage>
           </FieldWrapper>
           <FieldWrapper>
             <Label htmlFor="rvspLink">RSVP Link</Label>
