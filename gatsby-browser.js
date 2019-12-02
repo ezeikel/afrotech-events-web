@@ -9,29 +9,15 @@
 import React from "react";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
-import gql from "graphql-tag";
+import fetch from "isomorphic-fetch";
 
 const client = new ApolloClient({
   uri: process.env.NODE_ENV === 'production' ? "https://api.afrotech.events/graphql" : "http://localhost:7777/graphql",
+  fetch
 });
 
-client
-  .query({
-    query: gql`
-      {
-        events {
-          id
-          address
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
-
-export const wrapRootElement = ({ element }) => {
-  return (
-    <ApolloProvider client={client}>
-      { element }
-    </ApolloProvider>
-  );
-};
+export const wrapRootElement = ({ element }) => (
+  <ApolloProvider client={client}>
+    { element }
+  </ApolloProvider>
+);
