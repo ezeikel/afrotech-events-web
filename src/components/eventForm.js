@@ -119,13 +119,14 @@ const StyledButton = styled.button`
 `;
 
 const EventSchema = yup.object().shape({
-  name: yup.string().required('First Name is required.'),
-  host: yup.string().required('Last Name is required.'),
-  date: yup.string().required('Last Name is required.'),
-  time: yup.string().required('Last Name is required.'),
-  address: yup.string().required('Last Name is required.'),
-  rsvpLink: yup.string().required('Last Name is required.'),
-  notes: yup.string().required('Last Name is required.')
+  name: yup.string().required('Name is required.'),
+  host: yup.string().required('Host is required.'),
+  date: yup.string().required('Date is required.'),
+  startTime: yup.string().required('Start Time is required.'),
+  endTime: yup.string().required('End Time is required.'),
+  address: yup.string().required('Address is required.'),
+  rsvpLink: yup.string().required('RSVP Link is required.'),
+  notes: yup.string()
 });
 
 const EventForm = () => {
@@ -140,7 +141,6 @@ const EventForm = () => {
         // TODO: hardcoding temporarily
         const start = new Date("November 15, 2020 17:00:00");
         const end = new Date("November 15, 2020 21:30:00");
-        const eventDate = new Date("November 15, 2020");
 
         // TODO: combine date and time into one date and send it as startTime.
         // this will be stored as date in the Event model
@@ -153,6 +153,7 @@ const EventForm = () => {
             variables: values
           });
 
+          // TODO: for some reason this is the previous call data. Check Apollo docs
           console.log({ data });
           resetForm();
         } catch(e) {
@@ -164,12 +165,11 @@ const EventForm = () => {
     >
       {({
         isValid,
-        touched,
+        // touched,
         isSubmitting,
-        errors
+        // errors
       }) => (
         <FormWrapper>
-          {isValid}
           <FieldWrapper>
             <Label htmlFor="name">Event Name</Label>
             <StyledField type="text" name="name" />
@@ -213,7 +213,7 @@ const EventForm = () => {
             <ErrorMessage name="notes">{msg => <div className="error">{msg}</div>}</ErrorMessage>
           </FieldWrapper>
           <FieldWrapper>
-            <StyledButton type="submit" disabled={isSubmitting }>Submit{isSubmitting ? 'ing' : null}</StyledButton>
+            <StyledButton type="submit" disabled={isSubmitting || !isValid }>Submit{isSubmitting ? 'ing' : null}</StyledButton>
           </FieldWrapper>
         </FormWrapper>
       )}
