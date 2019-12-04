@@ -1,38 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import Logo from "../images/logo.svg"
 
 const Wrapper = styled.header`
   z-index: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-large);
   height: var(--header-height);
   background-color: transparent;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 180px;
   @media (min-width: 768px) {
-    padding: var(--spacing-medium) var(--spacing-large);
+    justify-content: flex-start;
+    height: 160px;
   }
-`;
+`
 
-const Logo = styled.span`
-  font-size: 28px;
-  line-height: 42px;
-  font-weight: 800;
-  text-align: center;
-  color: var(--color-white);
-  width: 100%;
-  @media (min-width: 768px) {
-    text-align: left;
-  }
+const StyledLogo = styled.img`
+  max-height: 100%;
 `;
 
 const Header = () => (
   <Wrapper>
-    <Logo>Afrotech Events</Logo>
+    <StyledLogo src={Logo} alt="logo" />
   </Wrapper>
 );
 

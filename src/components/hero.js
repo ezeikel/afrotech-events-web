@@ -18,15 +18,19 @@ const Overlay = styled.section`
   bottom: 0;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: 180px repeat(5, 1fr);
+  grid-row-gap: var(--spacing-medium);
   grid-template-columns: repeat(12, 1fr);
   justify-items: center;
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(21, 205, 168, 0.9), rgba(9, 154, 151, 0.9)
-    );
-`;
+  background-image: linear-gradient(
+    to right,
+    rgba(21, 205, 168, 0.9),
+    rgba(9, 154, 151, 0.9)
+  );
+  @media (min-width: 768px) {
+    grid-template-rows: 160px repeat(5, 1fr);
+  }
+`
 
 const HeroTitle = styled.div`
   grid-row: 2 / span 1;
