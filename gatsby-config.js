@@ -7,6 +7,7 @@ module.exports = {
     title: `Afrotech Events`,
     description: `Events, receptions, parties, and expo related offerings hosted by companies and groups during Afrotech. Also includes travel grants and scholarships, volunteer opportunities and ways to connect with other attendees. All events open to the public with the exception of those hosted by AfroTech itself.`,
     author: `@ezeikel`,
+    siteUrl: `https://afrotech.events`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,8 +23,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Afrotech Events`,
+        short_name: `ATEvents`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -71,5 +72,6 @@ module.exports = {
         //refetchInterval: 60,
       },
     },
+    `gatsby-plugin-sitemap`,
   ],
 }
