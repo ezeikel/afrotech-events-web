@@ -78,7 +78,7 @@ const Searchbox = styled.input`
 `;
 
 const SearchEvent = () => (
-  <Wrapper>
+  <Wrapper id="searchEvent">
     <Title>Events</Title>
     <StyledButton>Submit Event</StyledButton>
     <Searchbox type="text" placeholder="Search" />

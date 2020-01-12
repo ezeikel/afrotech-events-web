@@ -183,7 +183,7 @@ const Hero = () => {
           <span>{data.contentfulHero.title}</span>
           <span>{data.contentfulHero.subtitle}</span>
         </HeroTitle>
-        <StyledLink to="/">{data.contentfulHero.ctaText}</StyledLink>
+        <StyledLink to="#searchEvent">{data.contentfulHero.ctaText}</StyledLink>
         <StyledScrollDown />
       </Overlay>
     </Wrapper>
